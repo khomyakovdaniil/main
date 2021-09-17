@@ -24,11 +24,11 @@ class ChevroletCamaro: Car {
     init(subModel: String) {
         self.subModel = subModel
     }
-  
+    
     // MARK: - Internal
     let brand = "Chevrolet"
     var color = "Yellow"
-    let maxSpeed = 250
+    var maxSpeed = 250
     let subModel: String?
     
     func lookGood(){
@@ -38,34 +38,36 @@ class ChevroletCamaro: Car {
 
 
 class CamaroFuelHighConsumer: ChevroletCamaro {
+    override var maxSpeed: Int {
+        get{
+            return 300
+        }
+        set{
+            super.maxSpeed = newValue
+        }
+    }
+    
     func eatFuel(){
         print ("being useless")
     }
 }
 
-let camaro351 = CamaroFuelHighConsumer(subModel: "Camaro351")
+let camaro5L = CamaroFuelHighConsumer(subModel: "Camaro 5.0)")
+
+print("\(camaro5L.maxSpeed)")
 
 // FIXME: - rework
 
-protocol Autobot {
-    var beAutobot  :Bool  { get set }
-}
-
-
-class Bumblebee: ChevroletCamaro, Autobot {
-   var beAutobot = false
-    func transformIntoGiantRobot(){
-        beAutobot = true
-    }
-    func fightForHumanity(){
-        print ("defeating Decepticons")
+class CamaroMoneySaver: ChevroletCamaro{
+    func saveMoney(){
+        print ("being useless cheaper")
     }
 }
-let zhuk = Bumblebee()
 
-zhuk.move()
-zhuk.fightForHumanity()
-print ("my color is \(zhuk.color)")
+let camaro2L = CamaroMoneySaver(subModel: "Camaro 2.0")
+
+camaro2L.move()
+camaro2L.saveMoney()
 
 
 
